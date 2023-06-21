@@ -1,0 +1,97 @@
+div.card  {
+  border: 6px solid #8C8C8C;
+  border-radius: 6px;
+}
+form.search-bar {
+  padding: 0 0 12px 12px;
+}
+hr.divider {
+  background-color: #8C8C8C;
+  border: 0;
+  border-radius: 12px;
+  height: 6px;
+  margin: 18px auto;
+  opacity: 100%;
+}
+h1.card-title {
+  font-size: 30px;
+}
+h2.card-subtitle {
+  font-size: 100px;
+  line-height: 1;
+}
+h2.card-text {
+  font-size: 100px;
+  text-align: center;
+}
+h3.card-subtitle {
+  font-size: 50px;
+  line-height: 1;
+  position: relative;
+  top: 50px;
+}
+h4.card-subtitle {
+  text-align: center;
+}
+h5.card-subtitle {
+  font-size: 150px;
+  line-height: 203px;
+  margin: 0;
+  padding: 0 12px 12px;
+  text-align: center;
+}
+.container {
+  background-color: #F5F5F5;
+  border: 9px solid #8C8C8C;
+  border-radius: 18px;
+  font-family: 'Dosis', sans-serif;
+  margin: 18px auto;
+  padding: 12px 0;
+  color: #CCCCCC;
+}
+.card.quick-info-card h1.card-title {
+  line-height: 56.75px;
+}
+.card.current-weather-card {
+  height: 295px;
+}
+.card.forecast-card {
+  height: 222px;
+}
+.card.quick-info-card {
+  height: 295px;
+}
+.current-city {
+  text-transform: capitalize;
+}
+.row.temps-today {
+  padding-top: 12px;
+}
+#search-input {
+  border: 6px solid #8C8C8C;
+  border-radius: 6px;
+  font-size: 30px;
+  width:100%;
+}
+#settings-card {
+  /* display: none; */
+  border-width: 6;
+  position: absolute;
+  top: 39px;
+  left: 663px;
+}
+#settings-gear{
+  line-height: 59px;
+}
+#settings-card .card-body {
+  height: 283px;
+  width: 289.5px;
+}
+#settings-gear:hover{
+  color: #8C8C8C;
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+::placeholder {
+  color: #CCCCCC;
+}
