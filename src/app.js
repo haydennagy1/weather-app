@@ -1,5 +1,5 @@
 let apiKey = "4a98298a6ba8093b8f52ed7b38fb61cb";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?`;
+let apiUrl = null;
 
 function displayDate(date) {
   let months = [
@@ -64,13 +64,28 @@ function displayUpcomingDays(date) {
   daySixText.innerHTML = days[daySix];
 }
 
-//function convertUnits() {}
+let timeUpdated = new Date;
+let days = [
+  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+];
+displayDate(timeUpdated);
+displayTime(timeUpdated);
+displayUpcomingDays(timeUpdated);
 
 function showTemp(response) {
   let currentTemp = Math.round(response.data.main.temp);
   let currentTempElement = document.querySelector("#current-temp");
   currentTempElement.innerHTML = currentTemp;
 }
+
+function searchCurrentCity(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(showTemp);
+}
+
+navigator.geolocation.getCurrentPosition(searchCurrentCity);
 
 function searchCity(event) {
   event.preventDefault();
@@ -84,22 +99,5 @@ function searchCity(event) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchCity);
 
-function searchCurrentCity(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-  axios.get(apiUrl).then(showTemp);
-}
-
-navigator.geolocation.getCurrentPosition(searchCurrentCity);
-
-let timeUpdated = new Date;
-let days = [
-  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-];
-displayDate(timeUpdated);
-displayTime(timeUpdated);
-displayUpcomingDays(timeUpdated);
-
-let settingsGear = document.querySelector("#settings-gear");
+//let settingsGear = document.querySelector("#settings-gear");
 //settingsGear.addEventListener("click", convertUnits);
