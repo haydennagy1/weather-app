@@ -87,6 +87,12 @@ function displayCurrentWeatherDetails(response) {
   console.log(response.data);
   let realFeelElement = document.querySelector("#real-feel-temp");
   realFeelElement.innerHTML = Math.round(response.data.main.feels_like);
+
+  let humidityElement = document.querySelector("#humidity-percent");
+  humidityElement.innerHTML = response.data.main.humidity;
+
+  let windSpeedElement = document.querySelector("#wind-speed");
+  windSpeedElement.innerHTML = Math.round(10*response.data.wind.speed)/10;
 }
 
 //function displayCurrentWeatherType(response) {}
