@@ -93,6 +93,14 @@ function displayCurrentWeatherDetails(response) {
 
   let windSpeedElement = document.querySelector("#wind-speed");
   windSpeedElement.innerHTML = Math.round(10*response.data.wind.speed)/10;
+
+  let visibilityElement = document.querySelector("#visibility-distance");
+  let visibility = response.data.visibility;
+  if (visibility === 10000) {
+    visibilityElement.innerHTML = "10+";
+  } else {
+    visibilityElement.innerHTML = Math.round(visibility/100)/10;
+  }
 }
 
 //function displayCurrentWeatherType(response) {}
