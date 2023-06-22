@@ -72,7 +72,7 @@ displayDate(timeUpdated);
 displayTime(timeUpdated);
 displayUpcomingDays(timeUpdated);
 
-function showTempsToday(response) {
+function displayTempsToday(response) {
   let currentTemp = Math.round(response.data.main.temp);
   let currentTempElement = document.querySelector("#current-temp");
   currentTempElement.innerHTML = currentTemp;
@@ -98,7 +98,7 @@ function searchCurrentLocation(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-  axios.get(apiUrl).then(showTempsToday);
+  axios.get(apiUrl).then(displayTempsToday);
   axios.get(apiUrl).then(displayCurrentLocation);
 }
 
@@ -108,9 +108,9 @@ function searchCity(event) {
   event.preventDefault();
   let searchedCity = document.querySelector("#search-input").value;
   apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&units=metric&appid=${apiKey}`;
-  //displayedCity.innerHTML = searchedCity;
-  axios.get(apiUrl).then(showTempsToday);
+  axios.get(apiUrl).then(displayTempsToday);
   axios.get(apiUrl).then(displayCurrentLocation)
+//put above functions under a singular function later
 }
 
 let searchForm = document.querySelector("#search-form");
