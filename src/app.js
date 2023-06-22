@@ -103,7 +103,10 @@ function displayCurrentWeatherDetails(response) {
   }
 }
 
-//function displayCurrentWeatherType(response) {}
+function displayCurrentWeatherType(response) {
+  let currentWeatherTypeElement = document.querySelector("#current-weather-type");
+  currentWeatherTypeElement.innerHTML = response.data.weather[0].main;
+}
 
 function displayCurrentLocation(response) {
   let displayedCityElement = document.querySelector("#displayed-city-name");
@@ -117,6 +120,7 @@ function displayAll(response) {
   displayTempsToday(response);
   displayCurrentLocation(response);
   displayCurrentWeatherDetails(response);
+  displayCurrentWeatherType(response);
 }
 
 function searchCurrentLocation(position) {
