@@ -73,33 +73,43 @@ displayTime(timeUpdated);
 displayUpcomingDays(timeUpdated);
 
 function displayTempsToday(response) {
-  let currentTemp = Math.round(response.data.main.temp);
   let currentTempElement = document.querySelector("#current-temp");
-  currentTempElement.innerHTML = currentTemp;
+  currentTempElement.innerHTML = Math.round(response.data.main.temp);
   
-  let highTempToday = Math.round(response.data.main.temp_max);
   let highTempTodayElement = document.querySelector("#high-temp-today");
-  highTempTodayElement.innerHTML = highTempToday;
+  highTempTodayElement.innerHTML = Math.round(response.data.main.temp_max);
 
-  let lowTempToday = Math.round(response.data.main.temp_min);
   let lowTempTodayElement = document.querySelector("#low-temp-today");
-  lowTempTodayElement.innerHTML = lowTempToday;
+  lowTempTodayElement.innerHTML = Math.round(response.data.main.temp_min);
 }
 
-function displayCurrentLocation(response) {
-  let displayedCity = document.querySelector("#displayed-city-name");
-  displayedCity.innerHTML = response.data.name;
+function displayCurrentWeatherDetails(response) {
+  console.log(response.data);
+  let realFeelElement = document.querySelector("#real-feel-temp");
+  realFeelElement.innerHTML = Math.round(response.data.main.feels_like);
+}
 
-  let displayedCountry = document.querySelector("#displayed-country-name");
-  displayedCountry.innerHTML = response.data.sys.country;
+//function displayCurrentWeatherType(response) {}
+
+function displayCurrentLocation(response) {
+  let displayedCityElement = document.querySelector("#displayed-city-name");
+  displayedCityElement.innerHTML = response.data.name;
+
+  let displayedCountryElement = document.querySelector("#displayed-country-name");
+  displayedCountryElement.innerHTML = response.data.sys.country;
+}
+
+function displayAll(response) {
+  displayTempsToday(response);
+  displayCurrentLocation(response);
+  displayCurrentWeatherDetails(response);
 }
 
 function searchCurrentLocation(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-  axios.get(apiUrl).then(displayTempsToday);
-  axios.get(apiUrl).then(displayCurrentLocation);
+  axios.get(apiUrl).then(displayAll);
 }
 
 navigator.geolocation.getCurrentPosition(searchCurrentLocation);
@@ -108,9 +118,7 @@ function searchCity(event) {
   event.preventDefault();
   let searchedCity = document.querySelector("#search-input").value;
   apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&units=metric&appid=${apiKey}`;
-  axios.get(apiUrl).then(displayTempsToday);
-  axios.get(apiUrl).then(displayCurrentLocation)
-//put above functions under a singular function later
+  axios.get(apiUrl).then(displayAll);
 }
 
 let searchForm = document.querySelector("#search-form");
