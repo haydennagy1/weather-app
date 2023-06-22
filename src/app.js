@@ -72,28 +72,43 @@ displayDate(timeUpdated);
 displayTime(timeUpdated);
 displayUpcomingDays(timeUpdated);
 
-function showTemp(response) {
+function showTempsToday(response) {
+  console.log(response.data);
   let currentTemp = Math.round(response.data.main.temp);
   let currentTempElement = document.querySelector("#current-temp");
   currentTempElement.innerHTML = currentTemp;
+  
+  let highTempToday = Math.round(response.data.main.temp_max);
+  let highTempTodayElement = document.querySelector("#high-temp-today");
+  highTempTodayElement.innerHTML = highTempToday;
+
+  let lowTempToday = Math.round(response.data.main.temp_min);
+  let lowTempTodayElement = document.querySelector("#low-temp-today");
+  lowTempTodayElement.innerHTML = lowTempToday;
+}
+
+let displayedCity = document.querySelector("#displayed-city-name");
+
+function displayCurrentCity(response) {
+  displayedCity.innerHTML = response.data.name;
 }
 
 function searchCurrentCity(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-  axios.get(apiUrl).then(showTemp);
+  axios.get(apiUrl).then(showTempsToday);
+  axios.get(apiUrl).then(displayCurrentCity);
 }
 
 navigator.geolocation.getCurrentPosition(searchCurrentCity);
 
 function searchCity(event) {
   event.preventDefault();
-  let displayedCity = document.querySelector("#displayed-city-name");
   let searchedCity = document.querySelector("#search-input").value;
   apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&units=metric&appid=${apiKey}`;
   displayedCity.innerHTML = searchedCity;
-  axios.get(apiUrl).then(showTemp);
+  axios.get(apiUrl).then(showTempsToday);
 }
 
 let searchForm = document.querySelector("#search-form");
