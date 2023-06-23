@@ -1,6 +1,8 @@
 let apiKey = "4a98298a6ba8093b8f52ed7b38fb61cb";
 let apiUrl = null;
 
+let weatherIcon = null;
+
 let days = [
   "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
 ];
@@ -113,13 +115,53 @@ function displayCurrentWeatherType(response) {
   currentWeatherTypeElement.innerHTML = response.data.weather[0].main;
 }
 
-function displayCustomWeatherIcon(response) {
-  let weatherIconElement = document.querySelector("#current-weather-icon");
-  let weatherIcon = response.data.weather[0].icon;
-  
-  if (weatherIcon === "10d") {
-    weatherIconElement.innerHTML = "<i class='fa-solid fa-cloud-sun-rain'></i>";
+function useCustomWeatherIcons(response) {
+  weatherIcon = response.data.weather[0].icon;
+  switch (weatherIcon) {
+    case "01d":
+      return "<id='fa-solid fa-sun'>";
+    case "02d":
+      return "<id='fa-solid fa-cloud-sun'>";
+    case "03d":
+      return "<id='fa-solid fa-cloud'>";
+    case "04d":
+      return "<id='fa-solid fa-clouds'>";
+    case "09d":
+      return "<id='fa-solid fa-cloud-showers-heavy'>";
+    case "10d":
+        return "<id='fa-solid fa-cloud-sun-rain'>";
+    case "11d":
+        return "<id='fa-solid fa-cloud-bolt'>";
+    case "13d":
+      return "<id='fa-solid fa-snowflake'>";
+    case "50d":
+        return "<id='fa-solid fa-bars-staggered'>";
+    case "01n":
+      return "<id='fa-solid fa-moon'>";
+    case "02n":
+      return "<id='fa-solid fa-cloud-moon'>";
+    case "03n":
+      return "<id='fa-solid fa-cloud'>";
+    case "04n":
+      return "<id='fa-solid fa-clouds'>";
+    case "09n":
+      return "<id='fa-solid fa-cloud-showers-heavy'>";
+    case "10n":
+        return "<id='fa-solid fa-cloud-moon-rain'>";
+    case "11n":
+        return "<id='fa-solid fa-cloud-bolt'>";
+    case "13n":
+      return "<id='fa-solid fa-snowflake'>";
+    case "50n":
+        return "<id='fa-solid fa-bars-staggered'>";
   }
+  console.log(weatherIcon);
+}
+
+function displayCurrentWeatherIcon(response) {
+  let currentWeatherIconElement = document.querySelector("#current-weather-icon");
+  useCustomWeatherIcons(response);
+  currentWeatherIconElement.innerHTML = weatherIcon;
 }
 
 function displayCurrentLocation(response) {
@@ -136,7 +178,7 @@ function displayAll(response) {
   displayCurrentLocation(response);
   displayCurrentWeatherDetails(response);
   displayCurrentWeatherType(response);
-  displayCustomWeatherIcon(response);
+  displayCurrentWeatherIcon(response);
 }
 
 function searchCurrentLocation(position) {
