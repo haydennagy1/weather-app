@@ -1,10 +1,14 @@
 let apiKey = "4a98298a6ba8093b8f52ed7b38fb61cb";
 let apiUrl = null;
 
-function displayDate(date) {
-  let months = [
+let days = [
+  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+];
+let months = [
     "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-  ];
+];
+
+function displayDate(date) {
   let displayedCurrentDate = document.querySelector("#current-date");
   displayedCurrentDate.innerHTML = `${days[date.getDay()]}, ${months[date.getMonth()]} ${date.getDate()}`;
 }
@@ -64,13 +68,14 @@ function displayUpcomingDays(date) {
   daySixText.innerHTML = days[daySix];
 }
 
-let timeUpdated = new Date;
-let days = [
-  "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-];
-displayDate(timeUpdated);
-displayTime(timeUpdated);
-displayUpcomingDays(timeUpdated);
+function updateTime() {
+  let timeUpdated = new Date;
+  displayDate(timeUpdated);
+  displayTime(timeUpdated);
+  displayUpcomingDays(timeUpdated);
+}
+
+updateTime();
 
 function displayTempsToday(response) {
   let currentTempElement = document.querySelector("#current-temp");
@@ -108,6 +113,15 @@ function displayCurrentWeatherType(response) {
   currentWeatherTypeElement.innerHTML = response.data.weather[0].main;
 }
 
+function displayCustomWeatherIcon(response) {
+  let weatherIconElement = document.querySelector("#current-weather-icon");
+  let weatherIcon = response.data.weather[0].icon;
+  
+  if (weatherIcon === "10d") {
+    weatherIconElement.innerHTML = "<i class='fa-solid fa-cloud-sun-rain'></i>";
+  }
+}
+
 function displayCurrentLocation(response) {
   let displayedCityElement = document.querySelector("#displayed-city-name");
   displayedCityElement.innerHTML = response.data.name;
@@ -117,10 +131,12 @@ function displayCurrentLocation(response) {
 }
 
 function displayAll(response) {
+  updateTime();
   displayTempsToday(response);
   displayCurrentLocation(response);
   displayCurrentWeatherDetails(response);
   displayCurrentWeatherType(response);
+  displayCustomWeatherIcon(response);
 }
 
 function searchCurrentLocation(position) {
