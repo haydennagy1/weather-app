@@ -115,6 +115,7 @@ function displayCurrentWeatherType(response) {
 }
 
 function useCustomWeatherIcons(weatherIcon) {
+  console.log(weatherIcon);
   switch (weatherIcon) {
     case "01d":
       return "fa-solid fa-sun";
@@ -153,16 +154,14 @@ function useCustomWeatherIcons(weatherIcon) {
     case "50n":
         return "fa-solid fa-bars-staggered";
   }
+  console.log(weatherIcon);
 }
 
 function displayCurrentWeatherIcon(response) {
   let currentWeatherIconElement = document.querySelector("#current-weather-icon");
   currentWeatherIcon = response.data.weather[0].icon;
   useCustomWeatherIcons(currentWeatherIcon);
-  currentWeatherIconElement.setAttribute(
-    "class",
-    currentWeatherIcon
-  );
+  currentWeatherIconElement.setAttribute("class", currentWeatherIcon);
 }
 
 function displayCurrentLocation(response) {
