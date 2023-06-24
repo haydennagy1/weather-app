@@ -1,7 +1,6 @@
 let apiKey = "4a98298a6ba8093b8f52ed7b38fb61cb";
 let apiUrl = null;
-
-let weatherIcon = null;
+let unit = "metric";
 
 let days = [
   "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
@@ -115,53 +114,55 @@ function displayCurrentWeatherType(response) {
   currentWeatherTypeElement.innerHTML = response.data.weather[0].main;
 }
 
-function useCustomWeatherIcons(response) {
-  weatherIcon = response.data.weather[0].icon;
+function useCustomWeatherIcons(weatherIcon) {
   switch (weatherIcon) {
     case "01d":
-      return "<id='fa-solid fa-sun'>";
+      return "fa-solid fa-sun";
     case "02d":
-      return "<id='fa-solid fa-cloud-sun'>";
+      return "fa-solid fa-cloud-sun";
     case "03d":
-      return "<id='fa-solid fa-cloud'>";
+      return "fa-solid fa-cloud";
     case "04d":
-      return "<id='fa-solid fa-clouds'>";
+      return "fa-solid fa-clouds";
     case "09d":
-      return "<id='fa-solid fa-cloud-showers-heavy'>";
+      return "fa-solid fa-cloud-showers-heavy";
     case "10d":
-        return "<id='fa-solid fa-cloud-sun-rain'>";
+        return "fa-solid fa-cloud-sun-rain";
     case "11d":
-        return "<id='fa-solid fa-cloud-bolt'>";
+        return "fa-solid fa-cloud-bolt";
     case "13d":
-      return "<id='fa-solid fa-snowflake'>";
+      return "fa-solid fa-snowflake";
     case "50d":
-        return "<id='fa-solid fa-bars-staggered'>";
+        return "fa-solid fa-bars-staggered";
     case "01n":
-      return "<id='fa-solid fa-moon'>";
+      return "fa-solid fa-moon";
     case "02n":
-      return "<id='fa-solid fa-cloud-moon'>";
+      return "fa-solid fa-cloud-moon";
     case "03n":
-      return "<id='fa-solid fa-cloud'>";
+      return "fa-solid fa-cloud";
     case "04n":
-      return "<id='fa-solid fa-clouds'>";
+      return "fa-solid fa-clouds";
     case "09n":
-      return "<id='fa-solid fa-cloud-showers-heavy'>";
+      return "fa-solid fa-cloud-showers-heavy";
     case "10n":
-        return "<id='fa-solid fa-cloud-moon-rain'>";
+        return "fa-solid fa-cloud-moon-rain";
     case "11n":
-        return "<id='fa-solid fa-cloud-bolt'>";
+        return "fa-solid fa-cloud-bolt";
     case "13n":
-      return "<id='fa-solid fa-snowflake'>";
+      return "fa-solid fa-snowflake";
     case "50n":
-        return "<id='fa-solid fa-bars-staggered'>";
+        return "fa-solid fa-bars-staggered";
   }
-  console.log(weatherIcon);
 }
 
 function displayCurrentWeatherIcon(response) {
   let currentWeatherIconElement = document.querySelector("#current-weather-icon");
-  useCustomWeatherIcons(response);
-  currentWeatherIconElement.innerHTML = weatherIcon;
+  currentWeatherIcon = response.data.weather[0].icon;
+  useCustomWeatherIcons(currentWeatherIcon);
+  currentWeatherIconElement.setAttribute(
+    "class",
+    currentWeatherIcon
+  );
 }
 
 function displayCurrentLocation(response) {
@@ -184,7 +185,7 @@ function displayAll(response) {
 function searchCurrentLocation(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=${unit}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayAll);
 }
 
@@ -193,7 +194,7 @@ navigator.geolocation.getCurrentPosition(searchCurrentLocation);
 function searchCity(event) {
   event.preventDefault();
   let searchedCity = document.querySelector("#search-input").value;
-  apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&units=metric&appid=${apiKey}`;
+  apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&units=${unit}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayAll);
 }
 
