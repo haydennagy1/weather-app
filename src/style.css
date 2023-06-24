@@ -44,10 +44,12 @@ h5.card-subtitle {
   background-color: #F5F5F5;
   border: 9px solid #8C8C8C;
   border-radius: 18px;
+  color: #CCCCCC;
   font-family: 'Dosis', sans-serif;
   margin: 18px auto;
   padding: 12px 0;
-  color: #CCCCCC;
+  min-width: 1278.4px;
+  
 }
 .card.quick-info-card h1.card-title {
   line-height: 56.75px;
