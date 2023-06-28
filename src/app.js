@@ -154,14 +154,13 @@ function useCustomWeatherIcons(weatherIcon) {
     case "50n":
         return "fa-solid fa-bars-staggered";
   }
-  console.log(weatherIcon);
 }
 
 function displayCurrentWeatherIcon(response) {
   let currentWeatherIconElement = document.querySelector("#current-weather-icon");
   currentWeatherIcon = response.data.weather[0].icon;
-  useCustomWeatherIcons(currentWeatherIcon);
-  currentWeatherIconElement.setAttribute("class", currentWeatherIcon);
+  const iconClass = useCustomWeatherIcons(currentWeatherIcon);
+  currentWeatherIconElement.setAttribute("class", iconClass);
 }
 
 function displayCurrentLocation(response) {
