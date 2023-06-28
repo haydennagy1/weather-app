@@ -1,6 +1,9 @@
 let apiKey = "4a98298a6ba8093b8f52ed7b38fb61cb";
 let apiUrl = null;
 let unit = "metric";
+let tempUnitElements = document.querySelectorAll(".temp-unit");
+let speedUnitElements = document.querySelectorAll(".speed-unit");
+let distanceUnitElements = document.querySelectorAll(".distance-unit");
 
 let days = [
   "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
@@ -114,7 +117,6 @@ function displayCurrentWeatherType(response) {
 }
 
 function useCustomWeatherIcons(weatherIcon) {
-  console.log(weatherIcon);
   switch (weatherIcon) {
     case "01d":
       return "fa-solid fa-sun";
@@ -198,5 +200,8 @@ function searchCity(event) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchCity);
 
-//let settingsGear = document.querySelector("#settings-gear");
-//settingsGear.addEventListener("click", convertUnits);
+/*function convertUnits() {
+}
+
+let settingsGear = document.querySelector("#settings-gear");
+settingsGear.addEventListener("click", convertUnits);*/
