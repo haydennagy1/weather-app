@@ -90,7 +90,6 @@ function displayTempsToday(response) {
 }
 
 function displayCurrentWeatherDetails(response) {
-  console.log(response.data);
   let realFeelElement = document.querySelector("#real-feel-temp");
   realFeelElement.innerHTML = Math.round(response.data.main.feels_like);
 

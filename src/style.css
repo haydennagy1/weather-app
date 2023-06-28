@@ -1,3 +1,4 @@
+
 div.card  {
   border: 6px solid #8C8C8C;
   border-radius: 6px;
@@ -62,6 +63,9 @@ h5.card-subtitle {
 }
 .card.quick-info-card {
   height: 295px;
+}
+.container h6 {
+  margin: 0px 5.6px 0px;
 }
 .current-city {
   text-transform: capitalize;
