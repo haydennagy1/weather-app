@@ -123,7 +123,7 @@ function useCustomWeatherIcons(weatherIcon) {
     case "03d":
       return "fa-solid fa-cloud";
     case "04d":
-      return "fa-solid fa-clouds";
+      return "fa-solid fa-cloud";
     case "09d":
       return "fa-solid fa-cloud-showers-heavy";
     case "10d":
@@ -131,9 +131,9 @@ function useCustomWeatherIcons(weatherIcon) {
     case "11d":
         return "fa-solid fa-cloud-bolt";
     case "13d":
-      return "fa-solid fa-snowflake";
+      return "fa-regular fa-snowflake";
     case "50d":
-        return "fa-solid fa-bars-staggered";
+        return "fa-solid fa-smog";
     case "01n":
       return "fa-solid fa-moon";
     case "02n":
@@ -141,7 +141,7 @@ function useCustomWeatherIcons(weatherIcon) {
     case "03n":
       return "fa-solid fa-cloud";
     case "04n":
-      return "fa-solid fa-clouds";
+      return "fa-solid fa-cloud";
     case "09n":
       return "fa-solid fa-cloud-showers-heavy";
     case "10n":
@@ -149,9 +149,9 @@ function useCustomWeatherIcons(weatherIcon) {
     case "11n":
         return "fa-solid fa-cloud-bolt";
     case "13n":
-      return "fa-solid fa-snowflake";
+      return "fa-regular fa-snowflake";
     case "50n":
-        return "fa-solid fa-bars-staggered";
+        return "fa-solid fa-smog";
   }
 }
 
