@@ -200,8 +200,18 @@ function searchCity(event) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searchCity);
 
-/*function convertUnits() {
+function convertUnits(event) {
+  //event(preventDefault);
+  if (unit === "metric") {
+    unit = "imperial";
+    tempUnitElements.innerHTML += "°F";
+    navigator.geolocation.getCurrentPosition(searchCurrentLocation);
+  } else { 
+    unit = "metric";
+    tempUnitElements.innerHTML = "°C";
+    navigator.geolocation.getCurrentPosition(searchCurrentLocation);
+  }
 }
 
 let settingsGear = document.querySelector("#settings-gear");
-settingsGear.addEventListener("click", convertUnits);*/
+settingsGear.addEventListener("click", convertUnits);
