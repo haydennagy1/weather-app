@@ -202,18 +202,15 @@ searchForm.addEventListener("submit", searchCity);
 
 function convertUnits(event) {
   event.preventDefault();
-  unit = "imperial";
-  navigator.geolocation.getCurrentPosition(searchCurrentLocation);
-  console.log(apiUrl);
-  /*if (unit === "metric") {
+  if (unit === "metric") {
     unit = "imperial";
-    tempUnitElements.innerHTML += "°F";
+    //tempUnitElements.innerHTML += "°F";
     navigator.geolocation.getCurrentPosition(searchCurrentLocation);
   } else { 
     unit = "metric";
-    tempUnitElements.innerHTML = "°C";
+    //tempUnitElements.innerHTML = "°C";
     navigator.geolocation.getCurrentPosition(searchCurrentLocation);
-  }*/
+  }
 }
 
 let settingsGear = document.querySelector("#settings-gear");
