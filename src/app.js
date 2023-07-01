@@ -2,9 +2,8 @@ let apiKey = "4a98298a6ba8093b8f52ed7b38fb61cb";
 let apiUrl = null;
 let unit = "metric";
 let tempUnitElements = document.querySelectorAll(".temp-unit");
-let speedUnitElements = document.querySelectorAll(".speed-unit");
-let distanceUnitElements = document.querySelectorAll(".distance-unit");
-let formUsed = false;
+let speedUnitElement = document.querySelector(".speed-unit");
+let distanceUnitElement = document.querySelector(".distance-unit");
 
 let days = [
   "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
@@ -104,11 +103,19 @@ function displayCurrentWeatherDetails(response) {
   windSpeedElement.innerHTML = Math.round(10*response.data.wind.speed)/10;
 
   let visibilityElement = document.querySelector("#visibility-distance");
-  let visibility = response.data.visibility;
-  if (visibility === 10000) {
-    visibilityElement.innerHTML = "10+";
+  let visibility = response.data.visibility/1000;
+  if (visibility === 10) {
+    if (unit === "imperial") {
+      visibilityElement.innerHTML = `${Math.round(visibility/1.609344)}+`;
+    } else {
+      visibilityElement.innerHTML = "10+";
+    }
   } else {
-    visibilityElement.innerHTML = Math.round(visibility/100)/10;
+    if (unit === "imperial") {
+      visibilityElement.innerHTML = Math.round(visibility/1.609344);
+    } else {
+      visibilityElement.innerHTML = Math.round(visibility*10)/10;
+    }
   }
 }
 
@@ -206,11 +213,17 @@ function convertUnits(event) {
   if (unit === "metric") {
     unit = "imperial";
     //change unit html (°C -> °F, etc)
+    speedUnitElement.innerHTML = "mph";
+    distanceUnitElement.innerHTML = "mi";
     navigator.geolocation.getCurrentPosition(searchCurrentLocation);
+    visibilityElement.innerHTML = Math.round(visbility/1.609344);
   } else { 
     unit = "metric";
     //change unit html (°F -> °C, etc)
+    speedUnitElement.innerHTML = "km/h";
+    distanceUnitElement.innerHTML = "km";
     navigator.geolocation.getCurrentPosition(searchCurrentLocation);
+    
   }
 }
 
