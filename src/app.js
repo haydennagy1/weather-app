@@ -208,7 +208,7 @@ function convertUnits(event) {
   if (unit === "metric") {
     unit = "imperial";
     //change unit html (°C -> °F, etc)
-    if (formUsed = true) {
+    if (formUsed === true) {
       searchCity;
     } else {
       navigator.geolocation.getCurrentPosition(searchCurrentLocation);
@@ -216,7 +216,11 @@ function convertUnits(event) {
   } else { 
     unit = "metric";
     //change unit html (°F -> °C, etc)
-    navigator.geolocation.getCurrentPosition(searchCurrentLocation);
+    if (formUsed === true) {
+    searchCity;
+    } else {
+      navigator.geolocation.getCurrentPosition(searchCurrentLocation);
+    }
   }
 }
 
