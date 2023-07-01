@@ -4,6 +4,7 @@ let unit = "metric";
 let tempUnitElements = document.querySelectorAll(".temp-unit");
 let speedUnitElements = document.querySelectorAll(".speed-unit");
 let distanceUnitElements = document.querySelectorAll(".distance-unit");
+let formUsed = false;
 
 let days = [
   "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
@@ -195,6 +196,8 @@ function searchCity(event) {
   let searchedCity = document.querySelector("#search-input").value;
   apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&units=${unit}&appid=${apiKey}`;
   axios.get(apiUrl).then(displayAll);
+  formUsed = true;
+  console.log(formUsed);
 }
 
 let searchForm = document.querySelector("#search-form");
@@ -204,11 +207,15 @@ function convertUnits(event) {
   event.preventDefault();
   if (unit === "metric") {
     unit = "imperial";
-    //tempUnitElements.innerHTML += "°F";
-    navigator.geolocation.getCurrentPosition(searchCurrentLocation);
+    //change unit html (°C -> °F, etc)
+    if (formUsed = true) {
+      searchCity;
+    } else {
+      navigator.geolocation.getCurrentPosition(searchCurrentLocation);
+    }
   } else { 
     unit = "metric";
-    //tempUnitElements.innerHTML = "°C";
+    //change unit html (°F -> °C, etc)
     navigator.geolocation.getCurrentPosition(searchCurrentLocation);
   }
 }
