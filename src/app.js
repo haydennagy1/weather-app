@@ -100,19 +100,24 @@ function displayCurrentWeatherDetails(response) {
   humidityElement.innerHTML = response.data.main.humidity;
 
   let windSpeedElement = document.querySelector("#wind-speed");
-  windSpeedElement.innerHTML = Math.round(10*response.data.wind.speed)/10;
+  let windSpeed = response.data.wind.speed;
+  if (unit === "imperial") {
+    windSpeedElement.innerHTML = Math.round(windSpeed*10/1.609344)/10;
+  } else { 
+    windSpeedElement.innerHTML = Math.round(windSpeed*10)/10;
+  }
 
   let visibilityElement = document.querySelector("#visibility-distance");
   let visibility = response.data.visibility/1000;
   if (visibility === 10) {
     if (unit === "imperial") {
-      visibilityElement.innerHTML = `${Math.round(visibility/1.609344)}+`;
+      visibilityElement.innerHTML = "6.2+";
     } else {
       visibilityElement.innerHTML = "10+";
     }
   } else {
     if (unit === "imperial") {
-      visibilityElement.innerHTML = Math.round(visibility/1.609344);
+      visibilityElement.innerHTML = Math.round(visibility*10/1.609344)/10;
     } else {
       visibilityElement.innerHTML = Math.round(visibility*10)/10;
     }
