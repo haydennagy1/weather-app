@@ -2,7 +2,6 @@ let apiKey = "4a98298a6ba8093b8f52ed7b38fb61cb";
 let apiUrl = null;
 let unit = "metric";
 let tempUnitElements = document.querySelectorAll(".temp-unit");
-tempUnitElements.innerHTML = "*F";
 let speedUnitElement = document.querySelector(".speed-unit");
 let distanceUnitElement = document.querySelector(".distance-unit");
 
@@ -223,18 +222,16 @@ function convertUnits(event) {
   event.preventDefault();
   if (unit === "metric") {
     unit = "imperial";
-    tempUnitElements.innerHTML = "°F";
+    //tempUnitElements.innerHTML = "°F";
     speedUnitElement.innerHTML = "mph";
     distanceUnitElement.innerHTML = "mi";
     navigator.geolocation.getCurrentPosition(searchCurrentLocation);
-    visibilityElement.innerHTML = Math.round(visbility/1.609344);
   } else { 
     unit = "metric";
-    tempUnitElements.innerHTML = "°C";
+    //tempUnitElements.innerHTML = "°C";
     speedUnitElement.innerHTML = "km/h";
     distanceUnitElement.innerHTML = "km";
     navigator.geolocation.getCurrentPosition(searchCurrentLocation);
-    
   }
 }
 
