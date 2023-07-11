@@ -1,13 +1,18 @@
-
+:root {
+  --color1: #ffffff;
+  --color2: #F5F5F5;
+  --color3: #CCCCCC;
+  --color4: #8C8C8C;
+}
 div.card  {
-  border: 6px solid #8C8C8C;
+  border: 6px solid var(--color4);
   border-radius: 6px;
 }
 form.search-bar {
   padding: 0 0 12px 12px;
 }
 hr.divider {
-  background-color: #8C8C8C;
+  background-color: var(--color4);
   border: 0;
   border-radius: 12px;
   height: 6px;
@@ -42,10 +47,10 @@ h5.card-subtitle {
   text-align: center;
 }
 .container {
-  background-color: #F5F5F5;
-  border: 9px solid #8C8C8C;
+  background-color: var(--color2);
+  border: 9px solid var(--color4);
   border-radius: 18px;
-  color: #CCCCCC;
+  color: var(--color3);
   font-family: 'Dosis', sans-serif;
   margin: 18px auto;
   padding: 12px 0;
@@ -74,7 +79,7 @@ h5.card-subtitle {
   padding-top: 12px;
 }
 #search-input {
-  border: 6px solid #8C8C8C;
+  border: 6px solid var(--color4);
   border-radius: 6px;
   font-size: 30px;
   width:100%;
@@ -94,10 +99,10 @@ h5.card-subtitle {
   width: 289.5px;
 }
 #settings-gear:hover{
-  color: #8C8C8C;
+  color: var(--color4);
   cursor: pointer;
   transition: all 200ms linear;
 }
 ::placeholder {
-  color: #CCCCCC;
+  color: var(--color3);
 }

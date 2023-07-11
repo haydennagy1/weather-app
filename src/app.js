@@ -177,6 +177,100 @@ function displayCurrentWeatherIcon(response) {
   currentWeatherIconElement.setAttribute("class", iconClass);
 }
 
+function colorClearNight() {
+  document.documentElement.style.setProperty("--color1", "#FFFFFF");
+  document.documentElement.style.setProperty("--color2", "#FFFCEB");
+  document.documentElement.style.setProperty("--color3", "#FFEA70");
+  document.documentElement.style.setProperty("--color4", "#FFDA0A");
+}
+function colorCloudyNight() {
+  document.documentElement.style.setProperty("--color1", "#FFFFFF");
+  document.documentElement.style.setProperty("--color2", "#F5F7FA");
+  document.documentElement.style.setProperty("--color3", "#BFC8D6");
+  document.documentElement.style.setProperty("--color4", "#778599");
+}
+function colorRainyNight() {
+  document.documentElement.style.setProperty("--color1", "#FFFFFF");
+  document.documentElement.style.setProperty("--color2", "#edf2fd");
+  document.documentElement.style.setProperty("--color3", "#6495ed");
+  document.documentElement.style.setProperty("--color4", "#1856c9");
+}
+
+function assignColorTheme(weatherId) {
+  switch (weatherId) {
+    case "01d":
+      return "clear day";
+    case "02d":
+    case "03d":
+    case "04d":
+    case "13d":
+    case "50d":
+      return "cloudy day";
+    case "09d":
+    case "10d":
+    case "11d":
+        return "rainy day";
+    case "01n":
+      return "clear night";
+    case "02n":
+    case "03n":
+    case "04n":
+    case "13n":
+    case "50n":
+      return "cloudy night";
+    case "09n":
+    case "10n":
+    case "11n":
+        return "rainy night";
+  }
+}
+
+function displayColorTheme(response) {
+  currentWeatherTypeId = response.data.weather[0].icon;
+  const colorThemeId = assignColorTheme(currentWeatherTypeId);
+  if (colorThemeId === "clear day") {
+    document.documentElement.style.setProperty("--color1", "#FFFFFF");
+    document.documentElement.style.setProperty("--color2", "#FFFCEB");
+    document.documentElement.style.setProperty("--color3", "#FFEA70");
+    document.documentElement.style.setProperty("--color4", "#FFDA0A");
+  } else {
+    if (colorThemeId === "cloudy day") {
+      document.documentElement.style.setProperty("--color1", "#FFFFFF");
+      document.documentElement.style.setProperty("--color2", "#F5F5F5");
+      document.documentElement.style.setProperty("--color3", "#CCCCCC");
+      document.documentElement.style.setProperty("--color4", "#8C8C8C");
+    } else {
+      if (colorThemeId === "rainy day"){
+        document.documentElement.style.setProperty("--color1", "#FFFFFF");
+        document.documentElement.style.setProperty("--color2", "#edf2fd");
+        document.documentElement.style.setProperty("--color3", "#6495ed");
+        document.documentElement.style.setProperty("--color4", "#1856c9");
+      } else {
+        if (colorThemeId === "clear night") {
+          document.documentElement.style.setProperty("--color1", "#FFFFFF");
+          document.documentElement.style.setProperty("--color2", "#FFFCEB");
+          document.documentElement.style.setProperty("--color3", "#FFEA70");
+          document.documentElement.style.setProperty("--color4", "#FFDA0A");
+        } else {
+          if (colorThemeId === "cloudy night") {
+            document.documentElement.style.setProperty("--color1", "#FFFFFF");
+            document.documentElement.style.setProperty("--color2", "#FFFCEB");
+            document.documentElement.style.setProperty("--color3", "#FFEA70");
+            document.documentElement.style.setProperty("--color4", "#FFDA0A");
+          } else {
+            if (colorThemeId === "rainy night") {
+              document.documentElement.style.setProperty("--color1", "#FFFFFF");
+              document.documentElement.style.setProperty("--color2", "#FFFCEB");
+              document.documentElement.style.setProperty("--color3", "#FFEA70");
+              document.documentElement.style.setProperty("--color4", "#FFDA0A");
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 function displayCurrentLocation(response) {
   let displayedCityElement = document.querySelector("#displayed-city-name");
   displayedCityElement.innerHTML = response.data.name;
@@ -192,6 +286,7 @@ function displayAll(response) {
   displayCurrentWeatherDetails(response);
   displayCurrentWeatherType(response);
   displayCurrentWeatherIcon(response);
+  displayColorTheme(response);
 }
 
 function searchCurrentLocation(position) {
