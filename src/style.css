@@ -61,7 +61,7 @@ h5.card-subtitle {
   line-height: 56.75px;
 }
 .card.current-weather-card {
-  height: 295px;
+  height: 100%;
 }
 .card.forecast-card {
   height: 222px;
