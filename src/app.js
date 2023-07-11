@@ -94,12 +94,7 @@ function displayTempsToday(response) {
 
 function displayCurrentWeatherDetails(response) {
   let realFeelElement = document.querySelector("#real-feel-temp");
-  let realFeel = response.data.main.feels_like;
-  if (unit === "imperial") {
-    realFeelElement.innerHTML = `${Math.round(realFeel)}°F`;
-  } else {
-    realFeelElement.innerHTML = `${Math.round(realFeel)}°C`;
-  }
+  realFeelElement.innerHTML = `${Math.round(response.data.main.feels_like)}`
 
   let humidityElement = document.querySelector("#humidity-percent");
   humidityElement.innerHTML = response.data.main.humidity;
