@@ -222,13 +222,13 @@ function convertUnits(event) {
   event.preventDefault();
   if (unit === "metric") {
     unit = "imperial";
-    //tempUnitElements.innerHTML = "°F";
+    tempUnitElements.forEach(node => node.innerHTML = "°F");
     speedUnitElement.innerHTML = "mph";
     distanceUnitElement.innerHTML = "mi";
     navigator.geolocation.getCurrentPosition(searchCurrentLocation);
   } else { 
     unit = "metric";
-    //tempUnitElements.innerHTML = "°C";
+    tempUnitElements.forEach(node => node.innerHTML = "°C");
     speedUnitElement.innerHTML = "km/h";
     distanceUnitElement.innerHTML = "km";
     navigator.geolocation.getCurrentPosition(searchCurrentLocation);
