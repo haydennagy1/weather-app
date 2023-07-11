@@ -67,7 +67,7 @@ h5.card-subtitle {
   height: 222px;
 }
 .card.quick-info-card {
-  height: 295px;
+  height: 100%;
 }
 .container h6 {
   margin: 6px 5.6px 0px;
