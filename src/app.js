@@ -177,25 +177,6 @@ function displayCurrentWeatherIcon(response) {
   currentWeatherIconElement.setAttribute("class", iconClass);
 }
 
-function colorClearNight() {
-  document.documentElement.style.setProperty("--color1", "#FFFFFF");
-  document.documentElement.style.setProperty("--color2", "#FFFCEB");
-  document.documentElement.style.setProperty("--color3", "#FFEA70");
-  document.documentElement.style.setProperty("--color4", "#FFDA0A");
-}
-function colorCloudyNight() {
-  document.documentElement.style.setProperty("--color1", "#FFFFFF");
-  document.documentElement.style.setProperty("--color2", "#F5F7FA");
-  document.documentElement.style.setProperty("--color3", "#BFC8D6");
-  document.documentElement.style.setProperty("--color4", "#778599");
-}
-function colorRainyNight() {
-  document.documentElement.style.setProperty("--color1", "#FFFFFF");
-  document.documentElement.style.setProperty("--color2", "#edf2fd");
-  document.documentElement.style.setProperty("--color3", "#6495ed");
-  document.documentElement.style.setProperty("--color4", "#1856c9");
-}
-
 function assignColorTheme(weatherId) {
   switch (weatherId) {
     case "01d":
@@ -273,6 +254,16 @@ function displayCurrentLocation(response) {
   displayedCountryElement.innerHTML = response.data.sys.country;
 }
 
+function displayForecast(response) {
+  console.log(response);
+}
+
+function getForecast(coords) {
+  apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coords.lat}&lon=${coords.lon}&appid=${apiKey}&units=${unit}`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function displayAll(response) {
   updateTime();
   displayTempsToday(response);
@@ -281,6 +272,7 @@ function displayAll(response) {
   displayCurrentWeatherType(response);
   displayCurrentWeatherIcon(response);
   displayColorTheme(response);
+  getForecast(response.data.coord);
 }
 
 function searchCurrentLocation(position) {
