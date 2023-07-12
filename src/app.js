@@ -229,40 +229,34 @@ function displayColorTheme(response) {
   currentWeatherTypeId = response.data.weather[0].icon;
   const colorThemeId = assignColorTheme(currentWeatherTypeId);
   if (colorThemeId === "clear day") {
-    document.documentElement.style.setProperty("--color1", "#FFFFFF");
     document.documentElement.style.setProperty("--color2", "#FFFCEB");
-    document.documentElement.style.setProperty("--color3", "#FFEA70");
+    document.documentElement.style.setProperty("--color3", "#FFE75C");
     document.documentElement.style.setProperty("--color4", "#FFDA0A");
   } else {
     if (colorThemeId === "cloudy day") {
-      document.documentElement.style.setProperty("--color1", "#FFFFFF");
       document.documentElement.style.setProperty("--color2", "#F5F5F5");
       document.documentElement.style.setProperty("--color3", "#CCCCCC");
       document.documentElement.style.setProperty("--color4", "#8C8C8C");
     } else {
       if (colorThemeId === "rainy day"){
-        document.documentElement.style.setProperty("--color1", "#FFFFFF");
         document.documentElement.style.setProperty("--color2", "#edf2fd");
         document.documentElement.style.setProperty("--color3", "#6495ed");
         document.documentElement.style.setProperty("--color4", "#1856c9");
       } else {
         if (colorThemeId === "clear night") {
-          document.documentElement.style.setProperty("--color1", "#FFFFFF");
-          document.documentElement.style.setProperty("--color2", "#FFFCEB");
-          document.documentElement.style.setProperty("--color3", "#FFEA70");
-          document.documentElement.style.setProperty("--color4", "#FFDA0A");
+          document.documentElement.style.setProperty("--color2", "#E4E9F1");
+          document.documentElement.style.setProperty("--color3", "#BFC8D6");
+          document.documentElement.style.setProperty("--color4", "#8B97A7");
         } else {
           if (colorThemeId === "cloudy night") {
-            document.documentElement.style.setProperty("--color1", "#FFFFFF");
-            document.documentElement.style.setProperty("--color2", "#FFFCEB");
-            document.documentElement.style.setProperty("--color3", "#FFEA70");
-            document.documentElement.style.setProperty("--color4", "#FFDA0A");
+            document.documentElement.style.setProperty("--color2", "#BFC8D6");
+            document.documentElement.style.setProperty("--color3", "#778599");
+            document.documentElement.style.setProperty("--color4", "#606E80");
           } else {
             if (colorThemeId === "rainy night") {
-              document.documentElement.style.setProperty("--color1", "#FFFFFF");
-              document.documentElement.style.setProperty("--color2", "#FFFCEB");
-              document.documentElement.style.setProperty("--color3", "#FFEA70");
-              document.documentElement.style.setProperty("--color4", "#FFDA0A");
+              document.documentElement.style.setProperty("--color2", "#D4DDED");
+              document.documentElement.style.setProperty("--color3", "#8CA4CF");
+              document.documentElement.style.setProperty("--color4", "#3C62A5");
             }
           }
         }
