@@ -255,12 +255,47 @@ function displayCurrentLocation(response) {
 }
 
 function displayForecast(response) {
-  console.log(response);
+  document.querySelector("#day-1-high-temp").innerHTML = Math.round(response.data.daily[0].temp.max);
+  document.querySelector("#day-1-low-temp").innerHTML = Math.round(response.data.daily[0].temp.min);
+  dayOneWeatherIcon = response.data.daily[0].weather[0].icon;
+  const dayOneIconClass = useCustomWeatherIcons(dayOneWeatherIcon);
+  document.querySelector("#day-1-icon").setAttribute("class", dayOneIconClass);
+
+  document.querySelector("#day-2-high-temp").innerHTML = Math.round(response.data.daily[1].temp.max);
+  document.querySelector("#day-2-low-temp").innerHTML = Math.round(response.data.daily[1].temp.min);
+  dayTwoWeatherIcon = response.data.daily[1].weather[0].icon;
+  const dayTwoIconClass = useCustomWeatherIcons(dayTwoWeatherIcon);
+  document.querySelector("#day-2-icon").setAttribute("class", dayTwoIconClass);
+  
+  document.querySelector("#day-3-high-temp").innerHTML = Math.round(response.data.daily[2].temp.max);
+  document.querySelector("#day-3-low-temp").innerHTML = Math.round(response.data.daily[2].temp.min);
+  dayThreeWeatherIcon = response.data.daily[2].weather[0].icon;
+  const dayThreeIconClass = useCustomWeatherIcons(dayThreeWeatherIcon);
+  document.querySelector("#day-3-icon").setAttribute("class", dayThreeIconClass);
+
+  document.querySelector("#day-4-high-temp").innerHTML = Math.round(response.data.daily[3].temp.max);
+  document.querySelector("#day-4-low-temp").innerHTML = Math.round(response.data.daily[3].temp.min);
+  dayFourWeatherIcon = response.data.daily[3].weather[0].icon;
+  const dayFourIconClass = useCustomWeatherIcons(dayFourWeatherIcon);
+  document.querySelector("#day-4-icon").setAttribute("class", dayFourIconClass);
+  
+  document.querySelector("#day-5-high-temp").innerHTML = Math.round(response.data.daily[4].temp.max);
+  document.querySelector("#day-5-low-temp").innerHTML = Math.round(response.data.daily[4].temp.min);
+  dayFiveWeatherIcon = response.data.daily[4].weather[0].icon;
+  const dayFiveIconClass = useCustomWeatherIcons(dayFiveWeatherIcon);
+  document.querySelector("#day-5-icon").setAttribute("class", dayFiveIconClass);
+  
+  document.querySelector("#day-6-high-temp").innerHTML = Math.round(response.data.daily[5].temp.max);
+  document.querySelector("#day-6-low-temp").innerHTML = Math.round(response.data.daily[5].temp.min);
+  daySixWeatherIcon = response.data.daily[5].weather[0].icon;
+  const daySixIconClass = useCustomWeatherIcons(daySixWeatherIcon);
+  document.querySelector("#day-6-icon").setAttribute("class", daySixIconClass);
 }
 
 function getForecast(coords) {
-  apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coords.lat}&lon=${coords.lon}&appid=${apiKey}&units=${unit}`;
-  console.log(apiUrl);
+  let lat = coords.lat;
+  let lon = coords.lon;
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${unit}&appid=5f472b7acba333cd8a035ea85a0d4d4c`;
   axios.get(apiUrl).then(displayForecast);
 }
 
